@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/ejectedPilotRescue/infos/")
 public class EjectedPilotRescueRestController {
-    private CrudDataBase dataBase;
+    private final InMemoryMapDataBase dataBase;
 
-    public EjectedPilotRescueRestController(@Autowired CrudDataBase dataBase) {
+    @Autowired
+    public EjectedPilotRescueRestController(InMemoryMapDataBase dataBase) {
         this.dataBase = dataBase;
     }
 
-    public Entity get(int id){
-        return this.dataBase.getByID(id);
+    public <T extends Entity> List<T> get(Class<T> type){
+        return dataBase.getAllOfType(type);
     }
 }
