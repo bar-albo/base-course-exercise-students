@@ -33,10 +33,6 @@ public class EjectedPilotInfo implements Entity<EjectedPilotInfo> {
     public Coordinates getCoordinates() {
         return coordinates;
     }
-
-    public void setCoordinates(Coordinates coordinates) {
-        this.coordinates = coordinates;
-    }
     
     public String getRescuedBy() {
         return rescuedBy;
