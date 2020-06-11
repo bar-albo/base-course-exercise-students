@@ -81,11 +81,15 @@ public class EjectionsImporter {
         }
     }
 
+    private List<EjectedPilotInfo> ejectionsToChange(List<EjectedPilotInfo> firstEjectionsList, List<EjectedPilotInfo> secondEjectionsList) {
+        return listOperations.subtract(firstEjectionsList, secondEjectionsList, new Entity.ByIdEqualizer<>());
+    }
+    
     private List<EjectedPilotInfo> ejectionsToRemove(List<EjectedPilotInfo> updatedEjections, List<EjectedPilotInfo> previousEjections) {
-        return listOperations.subtract(previousEjections, updatedEjections, new Entity.ByIdEqualizer<>());
+        return ejectionsToChange(previousEjections, updatedEjections);
     }
 
     private List<EjectedPilotInfo> ejectionsToAdd(List<EjectedPilotInfo> updatedEjections, List<EjectedPilotInfo> previousEjections) {
-        return listOperations.subtract(updatedEjections, previousEjections, new Entity.ByIdEqualizer<>());
+        return ejectionsToChange(updatedEjections, previousEjections);
     }
 }
