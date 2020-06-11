@@ -38,7 +38,7 @@ public class EjectedPilotInfo implements Entity<EjectedPilotInfo> {
         return rescuedBy;
     }
 
-    public void getRescuedBy(String rescuedBy) {
+    public void setRescuedBy(String rescuedBy) {
         this.rescuedBy = rescuedBy;
     }
 
