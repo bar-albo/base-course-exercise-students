@@ -32,8 +32,8 @@ public class EjectionsRestController {
     public void takeResponsibility(@RequestParam int ejectionId, @CookieValue(value = "client-id", defaultValue = "") String clientId){
         EjectedPilotInfo currentEjection = this.dataBase.getByID(ejectionId, EjectedPilotInfo.class);
         if (currentEjection != null) {
-            if (currentEjection.rescuedBy == null) {
-                currentEjection.rescuedBy = clientId;
+            if (currentEjection.getRescuedBy() == null) {
+                currentEjection.setRescuedBy(clientId);
                 this.dataBase.update(currentEjection);
                 this.airplanesAllocationManager.allocateAirplanesForEjection(currentEjection, clientId);
             }
